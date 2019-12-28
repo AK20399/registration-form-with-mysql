@@ -1,0 +1,26 @@
+{
+	"name": "registration_with_mysql",
+	"version": "1.0.0",
+	"description": "",
+	"main": "server.js",
+	"scripts": {
+		"install_client": "npm install --prefix client",
+		"install_server": "npm install",
+		"install_all": "concurrently \"npm run install_server\" \"npm run install_client\"",
+		"start": "node server",
+		"server": "nodemon server.js",
+		"client": "npm start --prefix client",
+		"dev": "concurrently \"npm run server\" \"npm run client\""
+	},
+	"author": "AK Darji",
+	"license": "MIT",
+	"dependencies": {
+		"concurrently": "^5.0.2",
+		"express": "^4.17.1",
+		"mysql": "^2.17.1",
+		"validator": "^12.1.0"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.2"
+	}
+}
