@@ -1,10 +1,8 @@
 const mysql = require('mysql');
-const { host, user, password } = require('./config/keys');
+const data = require('../config/keys');
 
-const con = mysql.createConnection({
-	host: host,
-	user: user,
-	password: password,
+module.exports = con1 = mysql.createConnection({
+	host: data.host,
+	user: data.user,
+	password: data.password,
 });
-
-module.exports = con;

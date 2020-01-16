@@ -4,31 +4,72 @@ const isEmpty = require('./isEmpty');
 module.exports = function validateUserInput(data) {
 	let errors = {};
 
-	data.name = !isEmpty(data.name) ? data.name : '';
+	data.firstname = !isEmpty(data.firstname) ? data.firstname : '';
+	data.lastname = !isEmpty(data.lastname) ? data.lastname : '';
+	data.username = !isEmpty(data.username) ? data.username : '';
 	data.email = !isEmpty(data.email) ? data.email : '';
-	data.number = !isEmpty(data.number) ? data.number : '';
+	data.country = !isEmpty(data.country) ? data.country : '';
+	data.state = !isEmpty(data.state) ? data.state : '';
+	data.zip = !isEmpty(data.zip) ? data.zip : '';
+	data.aadhar = !isEmpty(data.aadhar) ? data.aadhar : '';
 
-	if (!Validator.isLength(data.name, { min: 2, max: 30 })) {
-		errors.name = 'Name Must be between 2 and 30 characters';
+	// Firstname
+	if (!Validator.isLength(data.firstname, { min: 3, max: 30 })) {
+		errors.firstname = 'FirstName Must be between 3 and 30 characters';
 	}
-	if (Validator.isEmpty(data.name)) {
-		errors.name = 'Name Field Is Required';
+	if (Validator.isEmpty(data.firstname)) {
+		errors.firstname = 'FirstName Field Is Required';
 	}
+	// Lastname
+	if (!Validator.isLength(data.lastname, { min: 3, max: 30 })) {
+		errors.lastname = 'LastName Must be between 3 and 30 characters';
+	}
+	if (Validator.isEmpty(data.lastname)) {
+		errors.lastname = 'LastName Field Is Required';
+	}
+	// username
+	if (!Validator.isLength(data.username, { min: 5, max: 30 })) {
+		errors.username = 'Username Must be between 5 and 30 characters';
+	}
+	if (Validator.isEmpty(data.username)) {
+		errors.username = 'Username Field Is Required';
+	}
+	// email
 	if (!Validator.isEmail(data.email)) {
 		errors.email = 'Email is Invalid';
 	}
 	if (Validator.isEmpty(data.email)) {
 		errors.email = 'Email Field Is Required';
 	}
-	if (!Validator.isLength(data.number, { min: 10, max: 10 })) {
-		errors.number = 'Must be 10 number';
+	// country
+	if (Validator.isEmpty(data.country)) {
+		errors.country = 'Please Select Country';
 	}
-	if (!Validator.isNumeric(data.number)) {
-		errors.number = 'Must be a number';
+	// state
+	if (Validator.isEmpty(data.state)) {
+		errors.state = 'Please Select State';
 	}
-	if (Validator.isEmpty(data.number)) {
-		errors.number = 'Number Field is Required';
+	// zip
+	if (!Validator.isLength(data.zip, { min: 6, max: 6 })) {
+		errors.zip = 'Must be 6 Number';
 	}
+	if (!Validator.isNumeric(data.zip)) {
+		errors.zip = 'Must be a Number';
+	}
+	if (Validator.isEmpty(data.zip)) {
+		errors.zip = 'Zip Field Is Required';
+	}
+	// aadhar
+	if (!Validator.isLength(data.aadhar, { min: 12, max: 12 })) {
+		errors.aadhar = 'Must be 12 Number';
+	}
+	if (!Validator.isNumeric(data.aadhar)) {
+		errors.aadhar = 'Must be a Number';
+	}
+	if (Validator.isEmpty(data.aadhar)) {
+		errors.aadhar = 'Number Field is Required';
+	}
+
 	return {
 		errors,
 		isValid: isEmpty(errors),
